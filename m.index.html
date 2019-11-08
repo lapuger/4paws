@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<!----------------------------------meta-------------------------------->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="keword" content="애완동물 쇼핑몰, 반려동물 쇼핑몰, 강아지, 개, 고양이, 햄스터, 고슴도치, 앵무새, 거북이, 도마뱀, 펫숍, 펫샵, 사료, 간식, 숨숨집, 새장, 수조, 관상어 ">
+		<meta name="description" content="애완동물·반려동물 용품 종합 쇼핑몰.">
+	<!---------------------------------script-------------------------------->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<!--
+		<script> //반응형에서 가로크기 바뀔때마다 자동으로 새로고침
+			$(function(){
+				$(window).resize(function() {
+					if($(window).width()>0){
+				   location.reload();
+					}
+				});
+			});
+		</script>
+	-->
+		<script> //banner01 숨기기	
+			$(document).ready(function(){
+				$('#banner01 .x').click(function(){
+					$('#banner01').slideUp();
+				});
+			});
+		</script>
+		<script> //gnb 메뉴
+			$(document).ready(function(){
+				$('#gnb .sub').hide();
+				$('#gnb .gnb2 li').mouseover(function(){
+					$(this).find('.sub').stop().slideDown();
+				}).mouseout(function(){
+					$(this).find('.sub').stop().slideUp();
+				});
+			});
+		</script>
+		<script>
+			$(function(){
+				var down = $('#menu .icon-down-open');
+
+				$('#menu_hide').hide();
+				down.click(function(){
+					if($(this).hasClass('icon-down-open')){
+						$(this).removeClass('icon-down-open').addClass('icon-up-open');
+						$('#menu_hide').slideDown();
+					}else{
+						$(this).removeClass('icon-up-open').addClass('icon-down-open');
+						$('#menu_hide').slideUp();
+					}
+
+				});				
+			});
+		</script>
+		<script> //main 배너 넘기기
+			$(document).ready(function(){
+				$('#main #control li').first().addClass('on');
+				var num = 0;
+				var btn = $('#main #control li');
+				var slide=$('#slide li');
+				var dir='next';
+				btn.click(function(){
+					btn.removeClass('on');
+					$(this).addClass('on');
+					var i = $(this).index();
+					move(i);
+				});
+
+				function move(i){
+					if(num==i){
+						return;
+					}
+					var p = slide.eq(num);
+					var n = slide.eq(i);
+					if(dir=='next'){
+						p.css({left:0}).stop().animate({left:'-100%'});
+						n.css({left:'100%'}).stop().animate({left:0});
+					}else{
+						p.css({left:0}).stop().animate({left:'100%'});
+						n.css({left:'-100%'}).stop().animate({left:0});
+					}
+					num=i;
+				};
+
+				timer();
+				function timer(){
+					var t=setInterval(function(){					
+					var q=num+1;
+					var dir2='next';
+					if(q==slide.length){
+						q=0;
+					}
+					btn.eq(q).trigger('click');
+					},3000);
+				}
+			});
+		</script>	
+		<script> //상품 하트 
+			$(document).ready(function(){
+				$('.row .icon-heart').mouseover(function(){
+					$(this).removeClass('icon-heart').addClass('icon-heart-filled');				
+				}).mouseout(function(){
+					$(this).removeClass('icon-heart-filled').addClass('icon-heart');	
+				});			
+			});
+		</script>
+		<script>
+			$(function(){
+				if($(window).width()>1023) {
+					$('#banner01 img').attr('src','images/banner01.jpg');
+					$('#slide01 img').attr('src','images/slide01.jpg');
+					$('#slide02 img').attr('src','images/slide02.jpg');
+					$('#slide03 img').attr('src','images/slide03.jpg');
+					$('#slide04 img').attr('src','images/slide04.jpg');
+				}
+			});
+		</script>
+
+		<!------고정메뉴------>
+			<script>
+				$(function(){
+					var clickT = $('#fixed #fold');
+					var hide = $('#fixed #fixed_hide');					
+					hide.css('bottom','-5rem');
+
+					t=0;
+					clickT.click(function(){
+						if(t==0){
+							hide.css('bottom','-5rem').animate({'bottom':'0'});
+							$('#fold dt span').removeClass('icon-up-open').addClass('icon-down-open');
+							$('#fold dd').text('접기');
+							t=t+1;
+						}else{
+							hide.css('bottom','0').animate({'bottom':'-5rem'});
+							$('#fold dt span').removeClass('icon-down-open').addClass('icon-up-open');
+							$('#fold dd').text('열기');
+							t=0;
+						}		
+					});
+				});
+			</script>	
+	<!---------------------------------font-------------------------------->
+		<style>
+		@font-face {
+			font-family:hanna-pro;
+			src:url('font/BMHANNAPro.eot');
+			src:local(※), url('font/BMHANNAPro.woff') format('woff');
+		}
+		@font-face {
+			font-family:hanna-air;
+			src:url('font/BMHANNAAir.eot');
+			src:url('font/BMHANNAAir.woff');
+		}
+		@font-face {
+			font-family:BMDoHyeon;
+			src:url('font/BMDOHYEON.eot');
+			src:url('font/BMDoHyeon.woff');
+		}
+		@font-face {
+			font-family:GodoM;
+			src:url('font/GODOM.eot');
+			src:url('font/GodoM.woff');
+		}
+		@font-face {
+			font-family:GodoB;
+			src:url('font/GODOB.eot');
+			src:url('font/GodoB.woff');
+		}
+		@font-face {
+			font-family:BMJUA;
+			src:url('font/BMJUA.eot');
+			src:url('font/BMJUA.woff');
+		}
+		</style>
+		<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap" rel="stylesheet">
+	<!---------------------------------style-------------------------------->
+		<style type="text/css">
+			* {
+				margin:0;
+				padding:0;
+				box-sizing:border-box;
+			}
+			body {
+				font-family:BMDoHyeon;
+				color:#333;
+				overflow-x:hidden;
+				width:100%;
+			}
+			img {
+				vertical-align:top;
+			}
+			a {
+				text-decoration:none;
+				color:#333;
+			}
+			li {
+				list-style:none;
+			}
+			.x {
+				color:#fff;
+				font-size:30px;
+				cursor:pointer;
+			}				
+			.row span.icon-heart-filled {
+				position:absolute;
+				top:15px; right:10px;
+				font-size:20px;
+				color:#ef4a48;
+			}
+			#m_bg {display:none;}		
+		</style>
+	<!---------------------------------link-------------------------------->
+		<link rel="stylesheet" type="text/css" href="css/mobile_vs_index.css" media="screen and (max-width:349px)">
+		<link rel="stylesheet" type="text/css" href="css/mobile_s_index.css" media="screen and (max-width:414px) and (min-width:350px)">
+		<link rel="stylesheet" type="text/css" href="css/mobile_b_index.css" media="screen and (max-width:812px) and (min-width:415px)">
+		<link rel="stylesheet" type="text/css" href="css/mobile_vb_index.css" media="screen and (min-width:813px)">
+		<link rel="stylesheet" type="text/css" href="fontello/css/fontello.css">
+	<title>네발바닥 - 첫화면</title>
+</head>
+<body>
+	<div id="wrapper"><!--------wrapper-------->
+		<div id="m_bg"></div>
+		<div id="fixed">
+			<dl id="fold">
+				<dt><span class="icon-up-open"></span></dt>
+				<dd>열기</dd>
+			</dl>
+			<div id="fixed_hide">
+				<form>
+					<input type="text">
+					<button><span class="icon-search"></span></button>
+				</form>		
+				<dl id="top"><a href="#">
+					<dt>TOP</dt>
+					<dd><span class="icon-up-bold"></span></dd>
+				</a></dl>
+			</div>
+		</div>
+		<div id="banner01">
+				<a href="#"><img src="images/m_banner01.jpg" alt="궁디팡팡 부스참여"></a>
+				<span class="icon-cancel x">&nbsp;</span>				
+		</div>
+		<header>			
+			<span class="icon-th-large"></span>
+			<h1><img src="images/home.png" alt="처음으로"></h1>
+			<span class="icon-user"></span>
+			<span class="icon-basket-alt"></span>
+		</header>
+		<div id="menu">
+				<div id="menu_slide">
+					<ul id="slide_in">
+						<li><a href="#"><img src="images/menu01.png" alt="입히기"> 입히기</a></li>
+						<li><a href="#"><img src="images/menu02.png" alt="먹이기"> 먹이기</a></li>
+						<li><a href="#"><img src="images/menu03.png" alt="재우기"> 재우기</a></li>
+						<li><a href="#"><img src="images/menu04.png" alt="관리하기"> 관리하기</a></li>
+						<li><a href="#"><img src="images/menu05.png" alt="놀기"> 놀기</a></li>
+						<li><a href="#"><img src="images/menu06.png" alt="외출하기"> 외출하기</a></li>	
+						<li><a href="#"><img src="images/menu07.png" alt="사람꺼"> 사람꺼</a></li>	
+						<li><a href="#"><img src="images/menu08.png" alt="오늘의 할인"> 오늘의 할인</a></li>	
+						<li><a href="#"><img src="images/menu09.png" alt="인기 상품"> 인기 상품</a></li>	
+					</ul>
+				</div>
+				<span class="icon-down-open"></span>
+				<ul id="menu_hide">
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold01.png" alt="입히기"></dt>
+							<dd>입히기</dd>
+						</a></dl>
+					</li>
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold02.png" alt="먹이기"></dt>
+							<dd>먹이기</dd>
+						</a></dl>
+					</li>
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold03.png" alt="재우기"></dt>
+							<dd>재우기</dd>
+						</a></dl>
+					</li>
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold04.png" alt="관리하기"></dt>
+							<dd>관리하기</dd>
+						</a></dl>
+					</li>
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold05.png" alt="놀기"></dt>
+							<dd>놀기</dd>
+						</a></dl>
+					</li>
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold06.png" alt="외출하기"></dt>
+							<dd>외출하기</dd>
+						</a></dl>
+					</li>
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold07.png" alt="사람꺼"></dt>
+							<dd>사람꺼</dd>
+						</a></dl>
+					</li>
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold08.png" alt="오늘의 할인"></dt>
+							<dd>오늘의 할인</dd>
+						</a></dl>
+					</li>
+					<li>
+						<dl><a href="#">
+							<dt><img src="images/fold09.png" alt="인기 상품"></dt>
+							<dd>인기 상품</dd>
+						</a></dl>
+					</li>
+				</ul>
+		</div>		
+		<div id="main">
+			<ul id="slide">
+				<li id="slide01"><a href="#"><img src="images/m_slide01.jpg" alt="페토이 자동 급식기"></a></li>
+				<li id="slide02"><a href="#"><img src="images/m_slide02.jpg" alt="영국사료 모음전"></a></li>
+				<li id="slide03"><a href="#"><img src="images/m_slide03.jpg" alt="하림 펫푸드"></a></li>
+				<li id="slide04"><a href="#"><img src="images/m_slide04.jpg" alt="강아지 야외용품 특가전"></a></li>
+			</ul>
+			<ul id="control">
+				<li><a href="#">&nbsp;</a></li>
+				<li><a href="#">&nbsp;</a></li>
+				<li><a href="#">&nbsp;</a></li>
+				<li><a href="#">&nbsp;</a></li>
+			</ul>
+		</div>	
+
+		<section id="row1">
+			<h3>입히기</h3>
+			<hr />						
+			<div class="page">
+				<dl>
+					<dt><a href="#"><img src="images/row1_01.jpg" alt="강아지 대형견 바람막이"></a></dt>
+					<dd><a href="#">강아지 대형견 바람막이<br />
+					우비 비옷 레인코트</a></dd>
+					<dd>26,500원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star-half">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>	
+				<dl>
+					<dt><a href="#"><img src="images/row1_02.jpg" alt="봄이네 애견샵 1+1 행사"></a></dt>
+					<dd><a href="#">봄이네 애견샵 1+1 행사<br />
+					강아지 여름옷 하와이</a></dd>
+					<dd>14,910원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row1_03.jpg" alt="딩동펫 애견 원목 옷걸이"></a></dt>
+					<dd><a href="#">딩동펫 애견 원목 옷걸이<br />
+					S_10P</a></dd>
+					<dd>8,900원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star-half">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row1_04.jpg" alt="빅세일 2900원~"></a></dt>
+					<dd><a href="#">빅세일 2900원~/강아지옷/<br />
+					고양이옷/애견의류</a></dd>
+					<dd>3,900원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>	
+				<dl>
+					<dt><a href="#"><img src="images/row1_05.jpg" alt="하네스 이름표"></a></dt>
+					<dd><a href="#">우리 아이 이름표 / <br />
+					하네스 강아지 고양이 인식표…</a></dd>
+					<dd>5,900원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row1_06.jpg" alt="강아지 애견 신발"></a></dt>
+					<dd><a href="#">강아지 애견 신발 레인부츠<br />
+					샌들 캔버스</a></dd>
+					<dd>6,000원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>		
+			</div>
+			<p>더 보기</p>			
+		</section>
+		<section id="row2">
+			<h3>먹이기</h3>
+			<hr />			
+			<div class="page">
+				<dl>
+					<dt><a href="#"><img src="images/row2_01.jpg" alt="고 연어 LID"></a></dt>
+					<dd><a href="#">Petcurean<br />
+					Go! 고 연어 LID 2.72kg</a></dd>
+					<dd>37,800원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star-half">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row2_02.jpg" alt="인섹트도그 베기도그"></a></dt>
+					<dd><a href="#">GREEN PETFOOD<br />
+					인섹트도그 베기도그 하이 2kg</a></dd>
+					<dd>36,000원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row2_03.jpg" alt="익섹트캣 그루텐프리"></a></dt>
+					<dd><a href="#">GREEN PETFOOD<br />
+					인섹트캣 글루텐프리 밀웜 2kg</a></dd>
+					<dd>36,000원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star-half">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row2_04.jpg" alt="해바라기씨"></a></dt>
+					<dd><a href="#">해바라기씨 500g<br />
+					햄스터 앵무새 다람쥐 사료…</a></dd>
+					<dd>1,400원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row2_05.jpg" alt="소동물용 분유"></a></dt>
+					<dd><a href="#">애니멀밥 소동물용 분유<br />
+					2.5g X 10</a></dd>
+					<dd>3,000원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row2_06.jpg" alt="수세미 이갈이"></a></dt>
+					<dd><a href="#">NEW AGE 수세미 이갈이<br />
+					식용색소로 알록달록</a></dd>
+					<dd>3,200원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star-half">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>						
+			</div>
+			<p>더 보기</p>
+		</section>
+		<section id="row3">
+			<h3>재우기</h3>
+			<hr />
+			<div class="page">		
+				<dl>
+					<dt><a href="#"><img src="images/row3_01.jpg" alt="아이스쿠션L"></a></dt>
+					<dd><a href="#">아페토 사각 쿨매트 아이스쿠션L<br />
+					 아이스팩 2개 포함</a></dd>
+					<dd>51,330원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>	
+				<dl>
+					<dt><a href="#"><img src="images/row3_02.jpg" alt="나무 은신처"></a></dt>
+					<dd><a href="#">세로형 알통 유리 나무 은신처<br />
+					앵무새 다람쥐 슈가글라이더…</a></dd>
+					<dd>14,000원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star-half">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row3_03.jpg" alt="소동물 케이지"></a></dt>
+					<dd><a href="#">하겐 스몰팔스팬_소<br />
+					작은동물 물고기 파충류 케이지</a></dd>
+					<dd>4,300원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row3_04.jpg" alt="네꼬모리 바구니냥"></a></dt>
+					<dd><a href="#">네꼬모리 바구니냥<br />
+					삼색이</a></dd>
+					<dd>9,900원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star-half">&nbsp;</span>
+					</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row3_05.jpg" alt="고양이 스크래쳐 하우스"></a></dt>
+					<dd><a href="#">캣츠로그 고양이 하우스<br />
+					스크래쳐 하우스 CT-27</a></dd>
+					<dd>14,900원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+						</dd>
+						<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>
+				<dl>
+					<dt><a href="#"><img src="images/row3_06.jpg" alt="부화통 산란통"></a></dt>
+					<dd><a href="#">아마존 구피 부화통 (소)<br />
+					어항부화통 산란통 치어통</a></dd>
+					<dd>2,500원</dd>
+					<dd>
+						<span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span><span class="icon-star">&nbsp;</span>
+						</dd>
+					<dd><a href="#"><span class="icon-heart">&nbsp;</span></a><a href="#"><span class="icon-paw">&nbsp;</span></a></dd>
+				</dl>					
+			</div>
+			<p>더 보기</p>
+		</section>
+		<footer>
+			<div id="footer_in">
+				<ul id="sns">
+					<li>Contact us</li>
+					<li><a href="#"><span class="icon-facebook">&nbsp;</span></a></li>
+					<li><a href="#"><span class="icon-twitter">&nbsp;</span></a></li>
+					<li><a href="#"><span class="icon-instagram">&nbsp;</span></a></li>
+					<li><a href="#"><span class="icon-gplus">&nbsp;</span></a></li>
+				</ul>
+				<ul id="fnb">					
+					<li><a href="#">이용약관</a></li>
+					<li><a href="#">개인정보처리방침</a></li>
+					<li><a href="#">공지사항</a></li>
+				</ul>	
+				<span id="button"><a href="index.html">PC 버전</a></span>			
+				<p>
+					네발바닥은 통신판매중개자이며 통신판매의 당사자가 아닙니다.<br />
+					따라서 네발바닥은 상품 - 거래정보 및 거래에 대하여 책임을 지지 않습니다.<br />
+					Copyright Four Paws Co., Ltd. All rights reserved.
+				</p>
+			</div>
+		</footer>
+	
+	</div>	
+</body>
+</html>
